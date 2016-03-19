@@ -53,9 +53,9 @@ options =
         """
     )
 
-    # <span>/<section>/<div>/<cite>/<time>/<header>/<footer> 保持内容原样
+    # <span>/<section>/<div>/<cite>/<time>/<header>/<footer>/<figure>/<figcaption>/<small> 保持内容原样
     (
-      filter: ['span', 'section', 'div', 'cite', 'time', 'header', 'footer']
+      filter: ['span', 'section', 'div', 'cite', 'time', 'header', 'footer', 'figure', 'figcaption', 'small']
       replacement: (content, node) -> if this.isBlock node then "\n\n#{ content }\n\n" else content
     )
 
@@ -79,6 +79,8 @@ options =
     (
       filter: 'li',
       replacement:  (content, node) ->
+        for child in node.children
+          return content if child.tagName.match /H[1-6]/
         content = content.replace(/^\s+/, '').replace /\n/gm, '\n  '
         prefix = '* '
         parent = node.parentNode
