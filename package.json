@@ -1,0 +1,25 @@
+{
+  "name": "atom-to-markdown",
+  "main": "./lib/atom-to-markdown",
+  "version": "0.0.1",
+  "description": "一个 HTML 到 Markdown 的转换包用于 Atom 编辑器。",
+  "keywords": [
+    "Markdown",
+    "HTML",
+    "Atom",
+    "Package"
+  ],
+  "activationCommands": {
+    "atom-workspace": "atom-to-markdown:convert"
+  },
+  "repository": "https://github.com/aqxa/atom-to-markdown",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+    "language-classifier": "0.0.1",
+    "language-detect": "^1.1.0",
+    "to-markdown": "^2.0.1"
+  }
+}
