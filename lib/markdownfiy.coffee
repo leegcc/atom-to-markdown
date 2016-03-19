@@ -15,10 +15,12 @@ guessLanguage = (content, node) ->
   language = node.getAttribute 'data-code-language'
   return language if language
 
-  # 尝试通过 class (highlight-source-<language>/language-<language>) 获取。
+  # 尝试通过 class (highlight-source-<language>/language-<language>/prettyprint) 获取。
   Array.prototype.some.call node.classList, (className) ->
     match = className.match /highlight-source-(\w+)/
     match = className.match /language-(\w+)/ if match is null
+    if match is null and className is 'prettyprint' and node.children[0]?.tagName is 'CODE'
+      match = [undefined , node.children[0].getAttribute 'data-lang']
     return false if not match
     language = match[1]
     return true
