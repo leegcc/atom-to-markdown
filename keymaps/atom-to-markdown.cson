@@ -1,2 +1,2 @@
 'atom-workspace':
-  'ctrl-alt-t': 'atom-to-markdown:convert'
+  'ctrl-shift-v': 'atom-to-markdown:convert'

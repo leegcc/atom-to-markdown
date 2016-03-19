@@ -11,7 +11,6 @@ keepWhitespace = (node, mark, content) ->
   return prefix + content + suffix
 
 guessLanguage = (content, node) ->
-
   # 尝试通过 data-code-language 获取
   language = node.getAttribute 'data-code-language'
   return language if language
@@ -28,6 +27,7 @@ guessLanguage = (content, node) ->
   return languageGuesswork content
 
 closest = (el, parentNodeName) ->
+  parentNodeName = parentNodeName.toUpperCase()
   while el isnt null
     parent = el.parentNode
     return parent if parent isnt null and parent.nodeName is parentNodeName
@@ -63,7 +63,7 @@ options =
     (
       filter: (node) ->
         return false if node.tagName isnt 'CODE'
-        (closest node, 'pre') isnt null
+        return (closest node, 'PRE') isnt null
       replacement: (content) -> content
     )
 
