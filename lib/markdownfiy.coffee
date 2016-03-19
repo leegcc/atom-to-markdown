@@ -77,6 +77,17 @@ options =
       replacement: -> ''
     )
 
+    # 没有 href 属性的超链接当做普通文本
+    (
+      filter: 'a'
+      replacement: (content, node) ->
+        href = node.getAttribute 'href'
+        return content unless href
+
+        titlePart = if node.title then " \"#{ content }\"" else ''
+        return "[#{ content }](#{ href }#{ titlePart })"
+    )
+
     # 列表项标记与内容之前只需要一个空格
     (
       filter: 'li',
