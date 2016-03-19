@@ -1,6 +1,9 @@
 
 一个 Atom 包。用于将剪贴板中 HTML 转为 Markdown，然后插入到当前光标位置。
 
+![截图 1](http://doc.aqqxa.com/screenshot01.gif)
+![截图 2](http://doc.aqqxa.com/screenshot02.gif)
+
 # 安装
 
 ```bash
