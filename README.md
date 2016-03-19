@@ -1,2 +1,2 @@
 
-一个 HTML 到 Markdown 的转换包用于 Atom 编辑器。
+将 HTML 格式转为 Markdown 的 Atom 插件。
