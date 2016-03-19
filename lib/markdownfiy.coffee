@@ -55,9 +55,9 @@ options =
         """
     )
 
-    # <span>/<section>/<div>/<cite>/<time>/<header>/<footer>/<figure>/<figcaption>/<small> 保持内容原样
+    # <span>/<section>/<div>/<cite>/<time>/<header>/<footer>/<figure>/<figcaption>/<small>/<dl>/<dd>  保持内容原样
     (
-      filter: ['span', 'section', 'div', 'cite', 'time', 'header', 'footer', 'figure', 'figcaption', 'small']
+      filter: ['span', 'section', 'div', 'cite', 'time', 'header', 'footer', 'figure', 'figcaption', 'small', 'dl', 'dd']
       replacement: (content, node) -> if this.isBlock node then "\n\n#{ content }\n\n" else content
     )
 
@@ -108,6 +108,13 @@ options =
       filter: ['strong', 'b']
       replacement: (content, node) -> keepWhitespace node, '**', content
     )
+
+    # <dt> 为 **
+    (
+      filter: 'dt',
+      replacement:  (content, node) -> '\n\n**' + content + '**\n\n'
+    )
+
   ]
 
 module.exports = markdownfiy = (html) -> toMarkdown html, options
