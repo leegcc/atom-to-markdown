@@ -1,1 +1,10 @@
-a<code><a href="/reference/android/app/Activity.html">Activity</a></code>b
+<p>However, even if you do nothing and do not implement <code><a href="/reference/android/app/Activity.html#onSaveInstanceState(android.os.Bundle)">onSaveInstanceState()</a></code>, some of the activity state is
+restored by the <code><a href="/reference/android/app/Activity.html">Activity</a></code> class's default implementation of <code><a href="/reference/android/app/Activity.html#onSaveInstanceState(android.os.Bundle)">onSaveInstanceState()</a></code>. Specifically, the default
+implementation calls the corresponding <code><a href="/reference/android/view/View.html#onSaveInstanceState()">onSaveInstanceState()</a></code> method for every <code><a href="/reference/android/view/View.html">View</a></code> in the layout, which allows each view to provide information about itself
+that should be saved. Almost every widget in the Android framework implements this method as
+appropriate, such that any visible changes to the UI are automatically saved and restored when your
+activity is recreated. For example, the <code><a href="/reference/android/widget/EditText.html">EditText</a></code> widget saves any text
+entered by the user and the <code><a href="/reference/android/widget/CheckBox.html">CheckBox</a></code> widget saves whether it's checked or
+not. The only work required of you is to provide a unique ID (with the <a href="/guide/topics/resources/layout-resource.html#idvalue"><code>android:id</code></a>
+attribute) for each widget you want to save its state. If a widget does not have an ID, then the
+system cannot save its state.</p>

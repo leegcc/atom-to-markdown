@@ -63,7 +63,7 @@ options =
 
     # 子元素为 <a> 的 <code>
     (
-      filter: (node) -> node.tagName is 'CODE' and node.children?[0].tagName is 'A'
+      filter: (node) -> node.tagName is 'CODE' and node.children and node.children[0]?.tagName is 'A'
       replacement: (content) -> content
     )
 
