@@ -61,6 +61,26 @@ options =
       replacement: (content, node) -> if this.isBlock node then "\n\n#{ content }\n\n" else content
     )
 
+    # 子元素为 <a> 的 <code>
+    (
+      filter: (node) -> node.tagName is 'CODE' and node.children?[0].tagName is 'A'
+      replacement: (content) -> content
+    )
+
+    # 没有 href 属性的超链接当做普通文本
+    (
+      filter: 'a'
+      replacement: (content, node) ->
+        if node.parentNode?.tagName is 'CODE'
+          content = "`#{ content }`"
+
+        href = node.getAttribute 'href'
+        return content unless href
+
+        titlePart = if node.title then " \"#{ content }\"" else ''
+        return "[#{ content }](#{ href }#{ titlePart })"
+    )
+
     # 包含在 <pre> 元素中的 <code> 保持内容原样
     (
       filter: (node) ->
@@ -77,16 +97,6 @@ options =
       replacement: -> ''
     )
 
-    # 没有 href 属性的超链接当做普通文本
-    (
-      filter: 'a'
-      replacement: (content, node) ->
-        href = node.getAttribute 'href'
-        return content unless href
-
-        titlePart = if node.title then " \"#{ content }\"" else ''
-        return "[#{ content }](#{ href }#{ titlePart })"
-    )
 
     # 列表项标记与内容之前只需要一个空格
     (
